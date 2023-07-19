@@ -56,7 +56,6 @@ public class SortCharsByFrequencyService {
 
     public static String buildSortedStringOfCharsByFrequency(Map<Integer, String> invertedKeyValMap,
                                                              Map<Character, Integer> characterFrequencyMap) {
-
         int max = getMaxValueFromHashmap(characterFrequencyMap);
         StringBuilder sortedString = new StringBuilder();
 
@@ -67,6 +66,4 @@ public class SortCharsByFrequencyService {
         }
         return sortedString.toString();
     }
-
-
 }
