@@ -5,53 +5,68 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.algorithmtron.utils.Utils.getMaxValueFromHashmap;
+import static com.algorithmtron.utils.Utils.populateHashmap;
+
 @Service
 public class SortCharsByFrequencyService {
+    /**
+     * Given a string s, sort it in decreasing order based on the frequency of the characters. The frequency of a character is the number of times it appears in the string.
+     *
+     * @param s - represent the string that is given as input.
+     * @return - Return the sorted string. If there are multiple answers, return any of them.
+     */
+    public String sortCharsByFrequency(String s) {
+        Map<Character, Integer> characterFrequencyMap = populateHashmap(s);
+        Map<Integer, String> characterFrequencyMapWithSwitchedKeyAndValue = generateSortedCharsMapByFrequency(characterFrequencyMap);
 
-    public String frequencySort(String s) {
-        Map<Character, Integer> hm = new HashMap<>();
-        StringBuilder sb = new StringBuilder();
+        return buildSortedStringOfCharsByFrequency(characterFrequencyMapWithSwitchedKeyAndValue, characterFrequencyMap);
+    }
 
-        for (char c : s.toCharArray()) {
-            if (!hm.containsKey(c)) {
-                hm.put(c, 1);
-            } else {
-                hm.put(c, hm.get(c) + 1);
-            }
+    public static Map<Integer, String> generateSortedCharsMapByFrequency(Map<Character, Integer> characterFrequencyMap) {
+        if (characterFrequencyMap == null) {
+            return new HashMap<>();
         }
-        int max = Integer.MIN_VALUE;
 
-        for (char c : hm.keySet()) {
-            if (hm.get(c) > max) {
-                max = hm.get(c);
+        Map<Integer, String> characterFrequencyMapWithSwitchedKeyAndValue = new HashMap<>();
+
+        for (char c : characterFrequencyMap.keySet()) {
+            if (characterFrequencyMap.get(c) == null) {
+                continue;
             }
-        }
-        Map<Integer, String> intKeyHm = new HashMap<>();
+            int freq = characterFrequencyMap.get(c);
+            StringBuilder keysOfFreq = new StringBuilder();
 
-        for (char c : hm.keySet()) {
-            int freq = hm.get(c);
-            String keysOfFreq = "";
-
-            if (intKeyHm.get(freq) == null) {
-                for (  int i = 0 ; i < freq ; i++) {
-                    keysOfFreq += c;
-                }
-            } else {
-                String prevKeysOfFreq = intKeyHm.get(freq);
+            if (characterFrequencyMapWithSwitchedKeyAndValue.get(freq) == null) {
                 for (int i = 0; i < freq; i++) {
-                    keysOfFreq += c;
+                    keysOfFreq.append(c);
                 }
-                keysOfFreq = prevKeysOfFreq + keysOfFreq;
+            } else {
+                String prevKeysOfFreq = characterFrequencyMapWithSwitchedKeyAndValue.get(freq);
+                for (int i = 0; i < freq; i++) {
+                    keysOfFreq.append(c);
+                }
+                keysOfFreq.insert(0, prevKeysOfFreq);
             }
-            intKeyHm.put(freq, keysOfFreq);
+            characterFrequencyMapWithSwitchedKeyAndValue.put(freq, keysOfFreq.toString());
         }
+
+        return characterFrequencyMapWithSwitchedKeyAndValue;
+    }
+
+    public static String buildSortedStringOfCharsByFrequency(Map<Integer, String> invertedKeyValMap,
+                                                             Map<Character, Integer> characterFrequencyMap) {
+
+        int max = getMaxValueFromHashmap(characterFrequencyMap);
+        StringBuilder sortedString = new StringBuilder();
 
         for (int i = max; i > 0; i--) {
-            if (intKeyHm.containsKey(i)) {
-                sb.append(intKeyHm.get(i));
+            if (invertedKeyValMap.containsKey(i)) {
+                sortedString.append(invertedKeyValMap.get(i));
             }
         }
-
-        return sb.toString();
+        return sortedString.toString();
     }
+
+
 }
