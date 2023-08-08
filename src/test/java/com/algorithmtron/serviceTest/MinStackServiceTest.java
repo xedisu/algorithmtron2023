@@ -55,19 +55,16 @@ public class MinStackServiceTest {
         assertEquals(-3,minStackService.getMin());
     }
 
-    @Test
-    void removingAnElementWhenTheStackIsEmpty () {
-        MinStackService minStackService = new MinStackService();
-
-        Assertions.assertFalse(minStackService.pop());
-    }
 
     @Test
     void removingAnElementWhenTheStackIsNotEmpty () {
         MinStackService minStackService = new MinStackService();
         minStackService.push(2);
+        minStackService.push(3);
 
-        Assertions.assertTrue(minStackService.pop());
+        minStackService.pop();
+
+        assertEquals(2, minStackService.top());
     }
 
     @Test
@@ -76,8 +73,6 @@ public class MinStackServiceTest {
         minStackService.push(2);
 
         Assertions.assertEquals( 2, minStackService.top());
-        minStackService.pop();
-        Assertions.assertFalse(minStackService.pop());
     }
 
     @Test

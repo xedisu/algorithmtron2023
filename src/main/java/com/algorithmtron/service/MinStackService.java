@@ -13,8 +13,8 @@ public class MinStackService {
      * MinStack() initializes the stack object.
      * void push(int val) pushes the element val onto the stack.
      * void pop() removes the element on the top of the stack.
-     * int top() gets the top element of the stack.
-     * int getMin() retrieves the minimum element in the stack.
+     * int top() gets the top element of the stack. If no element is present in the stack, it shall return minimum value Integer
+     * int getMin() retrieves the minimum element in the stack. If no element is present in the stack, it shall return minimum value Integer
      *
      */
 
@@ -44,29 +44,26 @@ public class MinStackService {
         }
     }
 
-    public boolean pop() {
-        if ( stack.size() == 0) {
-            return false;
-
-        } else {
+    public void  pop() {
+        if (!stack.isEmpty()){
             stack.removeFirst();
-            return true;
-
         }
     }
 
     public int top() {
-        if (stack.peek() == null) {
+        if (stack.isEmpty()) {
             return Integer.MIN_VALUE;
         }
+
         return stack.peek().val;
+
     }
 
     public int getMin() {
-        if (stack.peek() == null) {
+        if (stack.isEmpty()) {
             return Integer.MIN_VALUE;
         }
-        return stack.peek().min;
 
+        return stack.peek().min;
     }
 }
