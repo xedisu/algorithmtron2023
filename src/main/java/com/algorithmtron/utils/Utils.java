@@ -1,11 +1,10 @@
 package com.algorithmtron.utils;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Utils {
     public static int getMaxValueFromHashmap(Map<Character, Integer> characterFrequencyMap) {
-        if (characterFrequencyMap == null) {
+        if (Objects.isNull(characterFrequencyMap)) {
             return Integer.MIN_VALUE;
         }
 
@@ -21,7 +20,7 @@ public class Utils {
     }
 
     public static Map<Character, Integer> populateHashmap(String s) {
-        if (s == null) {
+        if (Objects.isNull(s)) {
             return null;
         }
 
@@ -36,5 +35,41 @@ public class Utils {
         }
 
         return returnHashMap;
+    }
+
+    public static Set<Character> generateSetWithCharsFromString(String stringInput) {
+        Set<Character> set = new HashSet<>();
+
+        if (Objects.isNull(stringInput)) {
+            return set;
+        }
+
+        for (char c : stringInput.toCharArray()) {
+            set.add(c);
+        }
+
+        return set;
+    }
+
+    public static boolean areAllCharactersOfStringFoundInSet(Set<Character> set, String word) {
+        if (Objects.isNull(word)) {
+            return false;
+        }
+
+        if (word.equals("") && !set.isEmpty()) {
+            return false;
+        }
+
+        if (Objects.isNull(set) || word.length() < 1) {
+            return false;
+        }
+
+        for (int i = 0; i < word.length(); i++) {
+            if (!set.contains(word.toLowerCase().charAt(i))) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }
