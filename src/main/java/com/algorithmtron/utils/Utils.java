@@ -1,7 +1,9 @@
 package com.algorithmtron.utils;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 public class Utils {
     public static int getMaxValueFromHashmap(Map<Character, Integer> characterFrequencyMap) {
@@ -36,5 +38,38 @@ public class Utils {
         }
 
         return returnHashMap;
+    }
+
+    public static Set<Character> generateSetWithCharsFromString(String stringInput) {
+        Set<Character> set = new HashSet<>();
+        if (stringInput == null) {
+            return set;
+        }
+        for (char c : stringInput.toCharArray()) {
+            set.add(c);
+        }
+
+        return set;
+    }
+
+    public static boolean areAllCharactersOfStringFoundInSet(Set<Character> set, String word) {
+        if (word == null && set == null) {
+            return false;
+        }
+
+        if (word.equals("") && !set.isEmpty()) {
+            return false;
+        }
+
+        if (set == null || word.length() < 1) {
+            return false;
+        }
+
+        for (int i = 0; i < word.length(); i++) {
+            if (!set.contains(word.toLowerCase().charAt(i))) {
+                return false;
+            }
+        }
+        return true;
     }
 }
