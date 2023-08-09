@@ -10,6 +10,8 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import static com.algorithmtron.utils.Utils.areAllCharactersOfStringFoundInSet;
+import static com.algorithmtron.utils.Utils.generateSetWithCharsFromString;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
@@ -29,6 +31,7 @@ public class UtilsTest {
     @Test
     void populateHashmapEmptyStringInput() {
         Map<Character, Integer> map = Utils.populateHashmap("");
+
         assertNull(map.get(""));
     }
 
@@ -90,8 +93,9 @@ public class UtilsTest {
 
     @Test
     void generateSetWithCharsFromStringValidInput() {
-        Set<Character> characterSet = Utils.generateSetWithCharsFromString("qwer");
+        Set<Character> characterSet = generateSetWithCharsFromString("qwer");
         Set<Character> testSet = new HashSet<>();
+
         testSet.add('q');
         testSet.add('w');
         testSet.add('e');
@@ -102,7 +106,7 @@ public class UtilsTest {
 
     @Test
     void generateSetWithCharsFromStringEmptyInput() {
-        Set<Character> characterSet = Utils.generateSetWithCharsFromString("");
+        Set<Character> characterSet = generateSetWithCharsFromString("");
         Set<Character> testSet = new HashSet<>();
 
         Assertions.assertEquals(testSet, characterSet);
@@ -110,7 +114,7 @@ public class UtilsTest {
 
     @Test
     void generateSetWithCharsFromStringNullInput() {
-        Set<Character> characterSet = Utils.generateSetWithCharsFromString(null);
+        Set<Character> characterSet = generateSetWithCharsFromString(null);
         Set<Character> testSet = new HashSet<>();
 
         Assertions.assertEquals(testSet, characterSet);
@@ -118,35 +122,40 @@ public class UtilsTest {
 
     @Test
     void areAllCharactersOfStringFoundInSetValidInputTrueOutcome() {
-        Set<Character> characterSet = Utils.generateSetWithCharsFromString("qwer");
+        Set<Character> characterSet = generateSetWithCharsFromString("qwer");
         String word = "qwer";
-        Assertions.assertTrue(Utils.areAllCharactersOfStringFoundInSet(characterSet, word));
+
+        Assertions.assertTrue(areAllCharactersOfStringFoundInSet(characterSet, word));
     }
 
     @Test
     void areAllCharactersOfStringFoundInSetValidInputFalseOutcome() {
-        Set<Character> characterSet = Utils.generateSetWithCharsFromString("qwer");
+        Set<Character> characterSet = generateSetWithCharsFromString("qwer");
         String word = "qwera";
-        Assertions.assertFalse(Utils.areAllCharactersOfStringFoundInSet(characterSet, word));
+
+        Assertions.assertFalse(areAllCharactersOfStringFoundInSet(characterSet, word));
     }
 
     @Test
     void areAllCharactersOfStringFoundInSetEmptyStringInput() {
-        Set<Character> characterSet = Utils.generateSetWithCharsFromString("qwer");
+        Set<Character> characterSet = generateSetWithCharsFromString("qwer");
         String word = "";
-        Assertions.assertFalse(Utils.areAllCharactersOfStringFoundInSet(characterSet, word));
+
+        Assertions.assertFalse(areAllCharactersOfStringFoundInSet(characterSet, word));
     }
 
     @Test
     void areAllCharactersOfStringFoundInSetWithNullSetInput() {
         String word = "qwer";
-        Assertions.assertFalse(Utils.areAllCharactersOfStringFoundInSet(null, word));
+
+        Assertions.assertFalse(areAllCharactersOfStringFoundInSet(null, word));
     }
 
     @Test
     void areAllCharactersOfStringFoundInSetWithNullInputs() {
         Set<Character> characterSet = null;
         String word = null;
-        Assertions.assertFalse(Utils.areAllCharactersOfStringFoundInSet(characterSet, word));
+
+        Assertions.assertFalse(areAllCharactersOfStringFoundInSet(characterSet, word));
     }
 }

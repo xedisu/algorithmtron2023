@@ -1,11 +1,16 @@
 package com.algorithmtron.service;
 
-import com.algorithmtron.utils.Utils;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
+
+import static com.algorithmtron.enums.RowsOfCharacterLettersOnKeyboard.*;
+import static com.algorithmtron.utils.Utils.areAllCharactersOfStringFoundInSet;
+import static com.algorithmtron.utils.Utils.generateSetWithCharsFromString;
+import static java.lang.String.valueOf;
 
 @Service
 public class KeyboardWordFinderService {
@@ -14,26 +19,25 @@ public class KeyboardWordFinderService {
      * return the words that can be typed using letters of the alphabet on only one row of American keyboard.
      * the first row consists of the characters "qwertyuiop",
      * the second row consists of the characters "asdfghjkl", and
-     * the third row consists of the characters "zxcvbnm".
-     * @param 'words' - represent the array of strings given as input.
+     * the third row consists of the characters "zxcvbnm"
+     *
+     * @param words - represent the array of strings given as input.
      * @return - Return the array of words that have their characters contained on any single line of characters on a keyboard.
      */
-    private enum RowsOfCharacterLettersOnKeyboard {qwertyuiop, asdfghjkl, zxcvbn}
-
     public String[] findWords(String[] words) {
-        if (words == null || (words.length == 1 && words[0].equals(""))) {
+        if (Objects.isNull(words) || (words.length == 1 && words[0].equals(""))) {
             return new String[0];
         }
 
-        Set<Character> firstRowSet = Utils.generateSetWithCharsFromString(String.valueOf(RowsOfCharacterLettersOnKeyboard.qwertyuiop));
-        Set<Character> secondRowSet = Utils.generateSetWithCharsFromString(String.valueOf(RowsOfCharacterLettersOnKeyboard.asdfghjkl));
-        Set<Character> thirdRowSet = Utils.generateSetWithCharsFromString(String.valueOf(RowsOfCharacterLettersOnKeyboard.zxcvbn));
+        Set<Character> firstRowSet = generateSetWithCharsFromString(valueOf(qwertyuiop));
+        Set<Character> secondRowSet = generateSetWithCharsFromString(valueOf(asdfghjkl));
+        Set<Character> thirdRowSet = generateSetWithCharsFromString(valueOf(zxcvbn));
         List<String> resultArray = new ArrayList<>();
 
         for (String word : words) {
-            boolean isWordFoundInFirstRow = Utils.areAllCharactersOfStringFoundInSet(firstRowSet, word);
-            boolean isWordFoundInSecondRow = Utils.areAllCharactersOfStringFoundInSet(secondRowSet, word);
-            boolean isWordFoundInThirdRow = Utils.areAllCharactersOfStringFoundInSet(thirdRowSet, word);
+            boolean isWordFoundInFirstRow = areAllCharactersOfStringFoundInSet(firstRowSet, word);
+            boolean isWordFoundInSecondRow = areAllCharactersOfStringFoundInSet(secondRowSet, word);
+            boolean isWordFoundInThirdRow = areAllCharactersOfStringFoundInSet(thirdRowSet, word);
 
             if (isWordFoundInFirstRow || isWordFoundInSecondRow || isWordFoundInThirdRow) {
                 resultArray.add(word);
