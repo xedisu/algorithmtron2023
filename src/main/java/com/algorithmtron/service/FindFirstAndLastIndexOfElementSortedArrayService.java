@@ -12,9 +12,10 @@ public class FindFirstAndLastIndexOfElementSortedArrayService {
         if (nums.length == 1) {
             if (nums[0] == target) {
                 return new int[]{0, 0};
+
+            } else {
+                return new int[]{-1, -1};
             }
-        } else if (nums[0] != target) {
-            return new int[]{-1, -1};
         }
 
         int left = 0;

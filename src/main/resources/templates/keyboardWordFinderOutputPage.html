@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset = "ISO-8859-1" />
+    <link href = "css/styles.css" rel = "stylesheet"/>
+    <title>Algorithmtron 2023</title>
+</head>
+<body>
+<tr th:each="word:${wordsDTO}" >
+    <td th:text="${word}"></td>
+</tr>
+</body>
+</html>
