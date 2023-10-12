@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1"/>
+    <link href="css/styles.css" rel="stylesheet"/>
+    <title>Algorithmtron 2023</title>
+</head>
+<body>
+<form th:object="${wordsDTO}" method="post" action="/keyboardWordFinder">
+    <input type="text" th:field="*{words}"/>
+    <input type="submit" value="Submit"/>
+</form>
+</body>
+</html>
