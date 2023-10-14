@@ -6,8 +6,8 @@
     <title>Algorithmtron 2023</title>
 </head>
 <body>
-<form th:object="${wordsRequestDTO}" method="post" action="/keyboardWordFinder">
-    <input type="text" th:field="*{wordsToCheck}"/>
+<form th:object="${wordRequestDTO}" method="post" action="/SortCharsByFrequency">
+    <input type="text" th:field="*{wordToCheck}"/>
     <input type="submit" value="Submit"/>
 </form>
 </body>
