@@ -7,7 +7,7 @@
 </head>
 <body>
 <form th:object="${wordsRequestDTO}" method="post" action="/keyboardWordFinder">
-    <input type="text" th:field="*{words}"/>
+    <input type="text" th:field="*{wordsToCheck}"/>
     <input type="submit" value="Submit"/>
 </form>
 </body>
