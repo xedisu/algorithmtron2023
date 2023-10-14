@@ -15,7 +15,7 @@ public class KeyBoardWordFinderController {
     KeyboardWordFinderService keyboardWordFinderService;
 
     @PostMapping("/keyboardWordFinder")
-    public String postKeyboardWordfinder(@ModelAttribute("wordsDTO") WordsDTO wordsDTO, Model model) {
+    public String postKeyboardWordFinder(@ModelAttribute("wordsDTO") WordsDTO wordsDTO, Model model) {
         String words[] = wordsDTO.getWords().split(" ");
 
         model.addAttribute("wordsDTO", keyboardWordFinderService.findWords(words));
