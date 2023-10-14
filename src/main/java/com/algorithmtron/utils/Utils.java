@@ -1,6 +1,7 @@
 package com.algorithmtron.utils;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Utils {
     public static int getMaxValueFromHashmap(Map<Character, Integer> characterFrequencyMap) {
@@ -72,4 +73,15 @@ public class Utils {
 
         return true;
     }
+
+    public static int[] convertStringToIntArray(String stringOfNumbers){
+        return Arrays.stream(stringOfNumbers.split(" "))
+                .map(s -> Integer.parseInt(s))
+                .sorted()
+                .collect(Collectors.toList())
+                .stream()
+                .mapToInt(i->i)
+                .toArray();
+    }
+
 }
