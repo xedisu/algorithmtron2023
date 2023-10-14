@@ -6,7 +6,7 @@
     <title>Algorithmtron 2023</title>
 </head>
 <body>
-<form th:object="${stringDTO}" method="post" action="/SortCharsByFrequency">
+<form th:object="${wordRequestDTO}" method="post" action="/SortCharsByFrequency">
     <input type="text" th:field="*{wordToCheck}"/>
     <input type="submit" value="Submit"/>
 </form>

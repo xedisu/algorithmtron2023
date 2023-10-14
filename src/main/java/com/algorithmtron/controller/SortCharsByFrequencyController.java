@@ -1,6 +1,6 @@
 package com.algorithmtron.controller;
 
-import com.algorithmtron.model.StringDTO;
+import com.algorithmtron.model.WordRequestDTO;
 import com.algorithmtron.service.SortCharsByFrequencyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,18 +17,18 @@ public class SortCharsByFrequencyController {
 
     @GetMapping("/SortCharsByFrequency")
     public String getSortCharsByFrequency(Model model) {
-        StringDTO stringDTO = new StringDTO();
+        WordRequestDTO wordRequestDTO = new WordRequestDTO();
 
-        model.addAttribute("stringDTO", stringDTO);
+        model.addAttribute("wordRequestDTO", wordRequestDTO);
 
-        return "SortCharsByFrequencyInputPage";
+        return "sortCharsByFrequencyInputPage";
     }
 
     @PostMapping("/SortCharsByFrequency")
-    public String postSortCharsByFrequency(@ModelAttribute("stringDTO") StringDTO stringDTO, Model model) {
+    public String postSortCharsByFrequency(@ModelAttribute("wordRequestDTO") WordRequestDTO wordRequestDTO, Model model) {
 
-        model.addAttribute("stringDTO", sortCharsByFrequencyService.sortCharsByFrequency(stringDTO.getWordToCheck()));
+        model.addAttribute("wordRequestDTO", sortCharsByFrequencyService.sortCharsByFrequency(wordRequestDTO.getWordToCheck()));
 
-        return "SortCharsByFrequencyOutputPage";
+        return "sortCharsByFrequencyOutputPage";
     }
 }
