@@ -24,7 +24,7 @@ public class IndexFinderController {
     @PostMapping("/indexFinder")
     public String postIndexFinder(@RequestParam String arrayOfNumbers, @RequestParam int target, Model model) {
         model.addAttribute("numbersRequestDTO",
-                indexFinderService.searchRange(convertStringToIntArray(arrayOfNumbers), target));
+                indexFinderService.findFirstAndLastOccurrence(convertStringToIntArray(arrayOfNumbers), target));
 
         return "indexFinderOutputPage";
     }

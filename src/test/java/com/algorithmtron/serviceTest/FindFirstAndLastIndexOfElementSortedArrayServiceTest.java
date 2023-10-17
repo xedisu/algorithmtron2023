@@ -18,7 +18,7 @@ public class FindFirstAndLastIndexOfElementSortedArrayServiceTest {
         int target = 1;
         int[] res = {0, 2};
 
-        Assertions.assertEquals(Arrays.toString(res), Arrays.toString(service.searchRange(nums, target)));
+        Assertions.assertEquals(Arrays.toString(res), Arrays.toString(service.findFirstAndLastOccurrence(nums, target)));
     }
 
     @Test
@@ -28,7 +28,7 @@ public class FindFirstAndLastIndexOfElementSortedArrayServiceTest {
         int target = 3;
         int[] res = {2, 2};
 
-        Assertions.assertEquals(Arrays.toString(res), Arrays.toString(service.searchRange(nums, target)));
+        Assertions.assertEquals(Arrays.toString(res), Arrays.toString(service.findFirstAndLastOccurrence(nums, target)));
     }
 
     @Test
@@ -38,7 +38,7 @@ public class FindFirstAndLastIndexOfElementSortedArrayServiceTest {
         int target = 1;
         int[] res = {0, 0};
 
-        Assertions.assertEquals(Arrays.toString(res), Arrays.toString(service.searchRange(nums, target)));
+        Assertions.assertEquals(Arrays.toString(res), Arrays.toString(service.findFirstAndLastOccurrence(nums, target)));
     }
 
     @Test
@@ -48,7 +48,7 @@ public class FindFirstAndLastIndexOfElementSortedArrayServiceTest {
         int target = 4;
         int[] res = {-1, -1};
 
-        Assertions.assertEquals(Arrays.toString(res), Arrays.toString(service.searchRange(nums, target)));
+        Assertions.assertEquals(Arrays.toString(res), Arrays.toString(service.findFirstAndLastOccurrence(nums, target)));
     }
 
     @Test
@@ -58,7 +58,7 @@ public class FindFirstAndLastIndexOfElementSortedArrayServiceTest {
         int target = 3;
         int[] res = {-1, -1};
 
-        Assertions.assertEquals(Arrays.toString(res), Arrays.toString(service.searchRange(nums, target)));
+        Assertions.assertEquals(Arrays.toString(res), Arrays.toString(service.findFirstAndLastOccurrence(nums, target)));
     }
 
     @Test
@@ -68,7 +68,7 @@ public class FindFirstAndLastIndexOfElementSortedArrayServiceTest {
         int target = 0;
         int[] res = {0, 1};
 
-        Assertions.assertEquals(Arrays.toString(res), Arrays.toString(service.searchRange(nums, target)));
+        Assertions.assertEquals(Arrays.toString(res), Arrays.toString(service.findFirstAndLastOccurrence(nums, target)));
     }
 
 }

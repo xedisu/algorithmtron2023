@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class IndexFinderService {
-    public int[] searchRange(int[] nums, int target) {
+    public int[] findFirstAndLastOccurrence(int[] nums, int target) {
         if (nums == null) {
             return new int[]{-1, -1};
         }
