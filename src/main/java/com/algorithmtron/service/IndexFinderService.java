@@ -3,7 +3,7 @@ package com.algorithmtron.service;
 import org.springframework.stereotype.Service;
 
 @Service
-public class FindFirstAndLastIndexOfElementSortedArrayService {
+public class IndexFinderService {
     public int[] searchRange(int[] nums, int target) {
         if (nums == null) {
             return new int[]{-1, -1};
