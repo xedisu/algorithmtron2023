@@ -1,6 +1,8 @@
 package com.algorithmtron.controller;
 
+import com.algorithmtron.entity.WordFinder;
 import com.algorithmtron.model.WordsRequestDTO;
+import com.algorithmtron.repository.KeyBoardWordFinderRepository;
 import com.algorithmtron.service.KeyboardWordFinderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,12 +15,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class KeyBoardWordFinderController {
     @Autowired
     KeyboardWordFinderService keyboardWordFinderService;
-
+    @Autowired
+    KeyBoardWordFinderRepository keyBoardWordFinderRepository;
     @PostMapping("/keyboardWordFinder")
     public String postKeyboardWordFinder(@ModelAttribute("wordsRequestDTO") WordsRequestDTO wordsRequestDTO, Model model) {
-        String words[] = wordsRequestDTO.getWordsToCheck().split(" ");
+        String wordsIn[] = wordsRequestDTO.getWordsToCheck().split(" ");
+        String wordsOut[] = keyboardWordFinderService.findWords(wordsIn);
 
-        model.addAttribute("wordsRequestDTO", keyboardWordFinderService.findWords(words));
+        model.addAttribute("wordsRequestDTO", wordsOut);
+        WordFinder wordFinder = new WordFinder();
+        wordFinder.setWordsInput(wordsIn);
+        wordFinder.setWordsOutput(wordsOut);
+        keyBoardWordFinderRepository.save(wordFinder);
 
         return "keyboardWordFinderOutputPage";
     }

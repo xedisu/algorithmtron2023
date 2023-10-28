@@ -1,5 +1,8 @@
 package com.algorithmtron.service;
 
+import com.algorithmtron.entity.WordFinder;
+import com.algorithmtron.repository.KeyBoardWordFinderRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -44,6 +47,10 @@ public class KeyboardWordFinderService {
             }
         }
 
-        return resultArray.toArray(new String[0]);
+        String[] output = resultArray.toArray(new String[0]);
+
+
+
+        return output;
     }
 }
